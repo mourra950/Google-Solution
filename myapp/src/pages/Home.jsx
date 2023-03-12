@@ -1,6 +1,8 @@
 function Home() {
-    return (
-     <></>
+  console.log('Home')  
+  return (
+     <>Home
+     </>
     );
   }
   
