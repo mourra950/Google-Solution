@@ -1,0 +1,18 @@
+body {
+  background-color: var(--secondary-dark);
+}
+
+.home-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--size-50) 0;
+  color: var(--paragraph);
+  padding: var(--size-40) 0;
+  height: 70vh;
+}
+
+.home-section h1 {
+  font-size: var(--size-50);
+}
