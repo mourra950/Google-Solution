@@ -116,6 +116,7 @@ const Register = () => {
           error={Boolean(errors.agreeTerms)}
           helperText={errors.agreeTerms}
         />
+        <br/>
         <Button type="submit" variant="contained" color="primary">
           Register
         </Button>

@@ -46,7 +46,7 @@ const Login = () => {
   };
 
   return (
-    <Container maxWidth="sm" className="container">
+    <Container maxWidth="sm" className="container test">
       <form onSubmit={handleSubmit}>
         <Typography variant="h4">Login</Typography>
         <TextField
@@ -78,7 +78,7 @@ const Login = () => {
             />
           }
           label="Remember me"
-        />
+        /><br/>
         <Button type="submit" variant="contained" color="primary">
           Login
         </Button>
