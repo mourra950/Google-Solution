@@ -18,6 +18,11 @@
   background: rgb(255, 255, 255);
 }
 
+.width-adjust {
+  width: 60%;
+  margin: 5vh auto;
+}
+
 .form {
   width: 100%;
   margin: 0 auto;

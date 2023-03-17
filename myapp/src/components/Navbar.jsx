@@ -32,6 +32,7 @@ function Navbar() {
     { text: "Login", path: "/login" },
     { text: "Register", path: "/register" },
     { text: "Models", path: "/models" },
+    { text: "Form", path: "/form" },
   ];
 
   return (
