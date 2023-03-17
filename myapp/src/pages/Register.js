@@ -60,71 +60,73 @@ const Register = () => {
   };
 
   return (
-    <Container maxWidth="sm" className="container">
-      <form onSubmit={handleSubmit}>
-        <Typography variant="h4">Register</Typography>
-        <TextField
-          label="Full Name"
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          error={Boolean(errors.fullName)}
-          helperText={errors.fullName}
-        />
-        <TextField
-          label="Email"
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          error={Boolean(errors.email)}
-          helperText={errors.email}
-        />
-        <TextField
-          label="Password"
-          variant="outlined"
-          margin="normal"
-          type="password"
-          fullWidth
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          error={Boolean(errors.password)}
-          helperText={errors.password}
-        />
-        <TextField
-          label="Confirm Password"
-          variant="outlined"
-          margin="normal"
-          type="password"
-          fullWidth
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          error={Boolean(errors.confirmPassword)}
-          helperText={errors.confirmPassword}
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={agreeTerms}
-              onChange={(e) => setAgreeTerms(e.target.checked)}
-            />
-          }
-          label="I agree to the terms and conditions"
-          error={Boolean(errors.agreeTerms)}
-          helperText={errors.agreeTerms}
-        />
-        <br/>
-        <Button type="submit" variant="contained" color="primary">
-          Register
-        </Button>
-        <Typography variant="body1">
-          Already have an account? <Link to="/login">Login</Link>
-        </Typography>
-      </form>
-    </Container>
+    <div className="contain">
+      <Container maxWidth="sm" className="container">
+        <form onSubmit={handleSubmit}>
+          <Typography variant="h4">Register</Typography>
+          <TextField
+            label="Full Name"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            error={Boolean(errors.fullName)}
+            helperText={errors.fullName}
+          />
+          <TextField
+            label="Email"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            error={Boolean(errors.email)}
+            helperText={errors.email}
+          />
+          <TextField
+            label="Password"
+            variant="outlined"
+            margin="normal"
+            type="password"
+            fullWidth
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            error={Boolean(errors.password)}
+            helperText={errors.password}
+          />
+          <TextField
+            label="Confirm Password"
+            variant="outlined"
+            margin="normal"
+            type="password"
+            fullWidth
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            error={Boolean(errors.confirmPassword)}
+            helperText={errors.confirmPassword}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={agreeTerms}
+                onChange={(e) => setAgreeTerms(e.target.checked)}
+              />
+            }
+            label="I agree to the terms and conditions"
+            error={Boolean(errors.agreeTerms)}
+            helperText={errors.agreeTerms}
+          />
+          <br />
+          <Button type="submit" variant="contained" color="primary">
+            Register
+          </Button>
+          <Typography variant="body1">
+            Already have an account? <Link to="/login">Login</Link>
+          </Typography>
+        </form>
+      </Container>
+    </div>
   );
 };
 

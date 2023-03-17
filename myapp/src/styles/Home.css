@@ -9,8 +9,9 @@ body {
   flex-direction: column;
   gap: var(--size-50) 0;
   color: var(--paragraph);
-  padding: var(--size-40) 0;
+  padding: var(--size-40) var(--size-10);
   height: 70vh;
+  text-align: center;
 }
 
 .home-section h1 {

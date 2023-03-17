@@ -1,0 +1,28 @@
+.container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.title {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.content {
+  margin-top: 2rem;
+}
+
+.text {
+  color: white;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
