@@ -66,7 +66,7 @@ function Models() {
         sx={{
           marginBottom: 2,
           transition: "all 0.3s",
-          width: "50%",
+          width: "60%",
         }}
       />
       <div className="cards-grid">
