@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import Models from "./pages/Models";
 import Diabetes from "./pages/Forms/Diabetes";
 import "./App.css";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/profile" element={<Profile/>} />
+
         <Route exact path="/about" element={<About />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />

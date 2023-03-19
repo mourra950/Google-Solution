@@ -1,0 +1,15 @@
+.MuiTabs-flexContainer
+{
+    display: flex;
+    justify-content: space-around;
+    color: white;
+}
+button.MuiButtonBase-root{
+    color:white
+}
+button.MuiButtonBase-root:hover{
+    color:rgb(168, 48, 48)
+}
+button.MuiButtonBase-root:focus{
+    color:rgb(168, 48, 48)
+}

@@ -18,13 +18,13 @@ const About = () => {
           <h1> What United Nations' Sustainable Development goal did you choose for your solution?</h1>
           We are targeting the third Goal Health and Well being.
           <h1>The Problem</h1>
-          all the world lack a global health care system where all medical history of a patient can be accessed in any hospital when needed.
+          The world lack a global health care system where all medical history of a patient can be accessed in any hospital when needed.
           why do we need a system like that?
           well in case of emergencies where no one related to patient is around speed is the factor between life and death and acting blindly could lead to fatal mistakes.
           <h1>Solution</h1>
-          Our site provide a simple way to store your medical history and a code that can be used to search for your medical profile.
-          using that code accessing your medical history and emergency contact couldnt be easier saving time and tests and hopefully your life.
-
+          Our site provide a simple way to store your medical history and provide a public id that can be used to search for your medical profile.
+          Having that id user can stick it ,print it , engrave a bracelet etc...... 
+          
         </Typography>
         <Typography variant="body1" className={classes.text}>
           Our platform utilizes the latest technology and data-driven insights
