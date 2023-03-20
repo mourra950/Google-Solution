@@ -46,7 +46,8 @@ export default function Profile() {
         setValue(newValue);
     };
 
-    return (
+    return (<>
+    <h1 className='t'>Patient Name</h1>
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
@@ -76,5 +77,6 @@ export default function Profile() {
                 </div>
             </TabPanel>
         </Box>
+        </>
     );
 }

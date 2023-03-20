@@ -1,8 +1,14 @@
-.MuiTabs-flexContainer
+.MuiTabs-flexContainer,.t
 {
     display: flex;
     justify-content: space-around;
     color: white;
+}
+.MuiTabs-flexContainer{
+    background-color: rgb(14, 19, 56);
+}
+.t{
+    padding: 0 10px;
 }
 button.MuiButtonBase-root{
     color:white
