@@ -1,11 +1,25 @@
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import '../styles/Profile.css'
-import QRCode from "react-qr-code";
+import { QRCode, Button } from 'antd';
+
+const downloadQRCode = () => {
+    const canvas = document.getElementById('myqrcode')?.querySelector('canvas');
+    if (canvas) {
+        const url = canvas.toDataURL();
+        const a = document.createElement('a');
+        a.download = 'QRCode.png';
+        a.href = url;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+};
+
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -47,7 +61,7 @@ export default function Profile() {
     };
 
     return (<>
-    <h1 className='t'>Patient Name</h1>
+        <h1 className='t'>Patient Name</h1>
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
@@ -63,20 +77,32 @@ export default function Profile() {
                 Item Two
             </TabPanel>
             <TabPanel value={value} index={2}>
-            <p style={{textAlign:'center',color:'white'}}>
-                That is your ID you can engrave this number on any items that you wear every day or you can print the Qr code<br/>
-                ID: 12123
-            </p>
-                <div style={{ height: "auto", margin: "0 auto", maxWidth: 642, width: "100%" }}>
+                <Typography style={{ textAlign: 'center', color: 'white' }}>
+                    That is your ID you can engrave this number on any items that you wear every day or you can print the Qr code<br />
+                    ID: 12123
+                </Typography>
+                <div style={{
+                    paddingTop:"16px",
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems:'center'
+                }}
+                    id="myqrcode">
                     <QRCode
-                    className='qrcodemourra'
-                        style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                        value={'12123'}
-                        viewBox={`0 0 256 256`}
+                        value="https://ant.design/"
+                        style={{
+                            marginBottom: 16,
+                            
+                        }}
+                        size={300}
+                        className='ahmed'
                     />
+                    <Button type="primary" onClick={downloadQRCode}>
+                        Download
+                    </Button>
                 </div>
             </TabPanel>
         </Box>
-        </>
+    </>
     );
 }
