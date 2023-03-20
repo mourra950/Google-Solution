@@ -89,7 +89,7 @@ export default function Profile() {
                 }}
                     id="myqrcode">
                     <QRCode
-                        value="https://ant.design/"
+                        value="http://localhost:3000/profile/12123"
                         style={{
                             marginBottom: 16,
                             

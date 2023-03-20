@@ -1,0 +1,10 @@
+[
+    {
+        "name":"omar",
+        "diabetes":false,
+        "diabetes_data":{
+            "type":"type 1",
+            "sugar":"179"
+        }
+    }
+]
