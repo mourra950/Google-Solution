@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Models from "./pages/Models";
-import Diabetes from "./pages/Forms/Diabetes";
+import Form from "./pages/Forms/FormTemplate";
 import "./App.css";
 import Profile from "./pages/Profile";
 
@@ -22,9 +22,7 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/models" element={<Models />} />
-        <Route  path="/form/">
-          <Route exact path="Diabetes" element={<Diabetes />} />
-        </Route>
+        <Route  path="/form/:disease" element={<Form />}/>
       </Routes>
     </Router>
   );

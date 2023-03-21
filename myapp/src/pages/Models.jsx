@@ -3,6 +3,8 @@ import Model from "../components/Model";
 import { TextField } from "@mui/material";
 import { styled } from "@mui/system";
 import "../styles/models.css";
+import {data} from "./Forms/formdata.js"
+
 
 const WhiteTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {
@@ -29,24 +31,7 @@ function Models() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredModels, setFilteredModels] = useState([]);
 
-  const models = [
-    {
-      title: "Diabetes",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took",
-    },
-    {
-      title: "Pressure",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took",
-    },
-    {
-      title: "Schizophrenia",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took",
-    },
-    {
-      title: "Paranoia",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took",
-    },
-  ];
+  const models = data
 
   useEffect(() => {
     setFilteredModels(

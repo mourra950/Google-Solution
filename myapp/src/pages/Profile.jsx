@@ -142,7 +142,7 @@ export default function Profile() {
             id="myqrcode"
           >
             <QRCode
-              value="http://localhost:3000/profile/12123"
+              value="http://///"
               style={{
                 marginBottom: 16,
               }}

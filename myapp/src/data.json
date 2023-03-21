@@ -1,7 +1,7 @@
 [
     {
         "name":"Marwan Hawash",
-        "diabetes":false,
+        "diabetes":true,
         "diabetes_data":{
             "type":"type 1",
             "sugar":"179"
