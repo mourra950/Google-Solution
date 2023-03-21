@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { MuiTelInput } from 'mui-tel-input'
 import { Link } from "react-router-dom";
 import axios from "axios";
 import {
@@ -7,15 +8,20 @@ import {
   FormControlLabel,
   TextField,
   Typography,
-  Container,
+  Container,FormLabel,
+  RadioGroup,Radio
 } from "@mui/material";
 import "../styles/form.css";
 
 const Register = () => {
+  const [phone, setPhone] = React.useState('')
+
+
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -106,6 +112,26 @@ const Register = () => {
             error={Boolean(errors.confirmPassword)}
             helperText={errors.confirmPassword}
           />
+          <MuiTelInput value={phone}
+            fullWidth
+
+            onChange={(newPhone) => {
+              setPhone(newPhone)
+            }}
+            error={Boolean(errors.phone)}
+          />
+          <FormLabel fullWidth id="demo-radio-buttons-group-label">Gender</FormLabel>
+          <RadioGroup
+        
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue="other"
+            name="radio-buttons-group"
+            row
+          >
+            <FormControlLabel value="female" control={<Radio />} label="Female" />
+            <FormControlLabel  value="male" control={<Radio />} label="Male" />
+            <FormControlLabel value="other" control={<Radio />} label="Other" />
+          </RadioGroup>
           <FormControlLabel
             control={
               <Checkbox

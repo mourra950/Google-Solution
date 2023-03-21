@@ -8,11 +8,16 @@ import {
   Box,
   Tab,
   Tabs,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails
 } from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import "../styles/Profile.css";
 import { QRCode, Button } from "antd";
 import data from "../data.json";
 import ConfusedImage from "../images/confused.jpg";
+import BasicCard from "../components/Emergencycontact";
 
 const downloadQRCode = () => {
   const canvas = document.getElementById("myqrcode")?.querySelector("canvas");
@@ -105,6 +110,7 @@ export default function Profile() {
   return (
     <>
       <h2 className="t">{patientName}</h2>
+
       <Box sx={{ width: "100%" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
@@ -112,18 +118,55 @@ export default function Profile() {
             onChange={handleChange}
             aria-label="basic tabs example"
           >
-            <Tab label="Emergency Contact" {...a11yProps(0)} />
-            <Tab label="Medical History" {...a11yProps(1)} />
-            <Tab label="Your ID" {...a11yProps(2)} />
+            <Tab className="tabs_profile" label="Emergency Contact" {...a11yProps(0)} />
+            <Tab className="tabs_profile" label="Medical History" {...a11yProps(1)} />
+            <Tab className="tabs_profile" label="Your ID" {...a11yProps(2)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          Item On1
+        <div className="cards-grid">
+        
+          <BasicCard/>
+          <BasicCard/>
+
+          <BasicCard/>
+
+          <BasicCard/>
+          </div>
+
         </TabPanel>
         <TabPanel value={value} index={1}>
-          {data.map((record, index) => (
-            <MedicalRecord key={index} record={record} />
-          ))}
+          <div>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Diabetes</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  Patient has Type 2 Diabetes
+                  </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <Typography>Peanut allergy</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+               user has extreme peanut allergies 
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          </div>
+        
         </TabPanel>
         <TabPanel value={value} index={2}>
           <Typography style={{ textAlign: "center", color: "white" }}>

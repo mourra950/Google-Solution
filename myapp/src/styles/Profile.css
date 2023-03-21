@@ -9,13 +9,17 @@
 }
 .t{
     padding: 0 10px;
+    height: 100px;
+    background-color: white;
+    color: black;
+    outline: 2px;
 }
 button.MuiButtonBase-root{
-    color:white
+    color:rgb(0, 0, 0);
+    outline: 2px;
+
 }
-button.MuiButtonBase-root:hover{
-    color:rgb(168, 48, 48)
-}
-button.MuiButtonBase-root:focus{
-    color:rgb(168, 48, 48)
+button.tabs_profile
+{
+    color: azure;
 }
