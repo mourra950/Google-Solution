@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -7,8 +7,15 @@ import {
   Button,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-
+import { auth } from "../firebaseconfig";
 function Model({ title, desc }) {
+  const [isAuthenticated, setIsAuthenticated] = useState(auth.currentUser ? true : false);
+
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
+      setIsAuthenticated(user ? true : false);
+    });
+  }, []);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardContent>
@@ -19,11 +26,14 @@ function Model({ title, desc }) {
           {desc}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small" component={Link} to={"/form/" + title}>
-          Add
-        </Button>
-      </CardActions>
+      {isAuthenticated && (
+        <CardActions>
+          <Button size="small" component={Link} to={"/form/" + title}>
+            Add
+          </Button>
+        </CardActions>
+      )
+      }
     </Card>
   );
 }

@@ -1,114 +1,40 @@
 export const data = [
-    {
-        "title": "Diabetes",
-        "desc": " a chronic (long-lasting) health condition that affects how your body turns food into energy.",
-        "form":[
-            
-                // { label: "Name", name: "name", type: "text", required: true },
-                // { label: "Email", name: "email", type: "email", required: true },
-                 { label: "Name", name: "Name", type: "text", required: true },
-                {
-                  label: "Type",
-                  name: "Type",
-                  type: "select",
-                  required: true,
-                  choices: [
-                    { label: "Type 1", value: "Type 1" },
-                    { label: "Type 2", value: "Type 2" },
-                    { label: "gestational", value: "gestational" },
-                  ],
-                },
-              
-        ]
-    },
-    {
-        "title": "Blood pressure",
-        "desc": "the pressure of blood pushing against the walls of your arteries.",
-        "form":[
-            
-            // { label: "Name", name: "name", type: "text", required: true },
-            // { label: "Email", name: "email", type: "email", required: true },
-             { label: "Name", name: "Name", type: "text", required: true },
-            {
-              label: "Type",
-              name: "Type",
-              type: "select",
-              required: true,
-              choices: [
-                { label: "Type 1", value: "Type 1" },
-                { label: "Type 2", value: "Type 2" },
-                { label: "gestational", value: "gestational" },
-              ],
-            },
-          
-    ]
-    },
-    {
-        "title": "Schizophrenia",
-        "desc": " a severe long-term mental health condition. It causes a range of different psychological symptoms.",
-        "form":[
-            
-            // { label: "Name", name: "name", type: "text", required: true },
-            // { label: "Email", name: "email", type: "email", required: true },
-             { label: "Name", name: "Name", type: "text", required: true },
-            {
-              label: "Type",
-              name: "Type",
-              type: "select",
-              required: true,
-              choices: [
-                { label: "Type 1", value: "Type 1" },
-                { label: "Type 2", value: "Type 2" },
-                { label: "gestational", value: "gestational" },
-              ],
-            },
-          
-    ]
-    },
-    {
-        "title": "Paranoia",
-        "desc": "thinking and feeling like you are being threatened in some way, even if there is no evidence, or very little evidence, that you are."
-        ,
-        "form":[
-            
-            // { label: "Name", name: "name", type: "text", required: true },
-            // { label: "Email", name: "email", type: "email", required: true },
-             { label: "Name", name: "Name", type: "text", required: true },
-            {
-              label: "Type",
-              name: "Type",
-              type: "select",
-              required: true,
-              choices: [
-                { label: "Type 1", value: "Type 1" },
-                { label: "Type 2", value: "Type 2" },
-                { label: "gestational", value: "gestational" },
-              ],
-            },
-          
-    ]
-    },
-    {
-        "title": "Paranoia",
-        "desc": "thinking and feeling like you are being threatened in some way, even if there is no evidence, or very little evidence, that you are."
-        ,
-        "form":[
-            
-            // { label: "Name", name: "name", type: "text", required: true },
-            // { label: "Email", name: "email", type: "email", required: true },
-             { label: "Name", name: "Name", type: "text", required: true },
-            {
-              label: "Type",
-              name: "Type",
-              type: "select",
-              required: true,
-              choices: [
-                { label: "Type 1", value: "Type 1" },
-                { label: "Type 2", value: "Type 2" },
-                { label: "gestational", value: "gestational" },
-              ],
-            },
-          
-    ]
-    }
+  {
+    "title": "Diagnosis",
+    "desc": "Fill this form to store past/current diagnosis/diseases",
+    "form": [
+      { label: "Diagnosis", name: "name", type: "text", required: true },
+      { label: "Description or any note ", name: "message", type: "text", required: true },
+      { label: "Date yyyy/mm/dd", name: "date", type: "text", required: true }
+
+
+    ],
+    "type":"Diagnosis"
+  },
+  {
+    "title": "Prescription",
+    "desc": "Store information about any current/past prescription "
+    ,
+    "form": [
+
+      { label: "Name", name: "name", type: "text", required: true },
+      { label: "Dosage", name: "dosage", type: "text", required: true },
+      { label: "Date yyyy/mm/dd", name: "date", type: "text", required: true }
+      
+    ],
+    "type":"Prescription"
+  },
+  {
+    "title": "Contact",
+    "desc": "form to fill emergency contacts for your profile to be able to contact any of them in case of emergency ",
+    "form": [
+
+      { label: "Name", name: "name", type: "text", required: true },
+      { label: "Relation", name: "relation", type: "text", required: true },
+      { label: "Phone Number", name: "phonenumber", type: "text", required: true }
+
+
+    ],
+    "type":"Contacts"
+  }
 ]

@@ -11,24 +11,23 @@ const bull = (
         component="span"
         sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
     >
-        •
     </Box>
 );
 
-export default function BasicCard() {
+export default function BasicCard({ relation, name, phonenumber }) {
     return (
-        <Card sx={{ minWidth: 450, maxWidth: 600 }}>
+        <Card sx={{ minWidth: 450, maxWidth: 500 }}>
             <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Contact Relation
-                </Typography>
-                <Typography variant="h5" component="div">
-                    Contact name
-                </Typography>
+                <div sx={{ fontSize: 14 }} color="text.secondary">
+                    {relation}
+                </div>
+                <div>
+                    {name}
+                </div>
 
-                <Typography variant="body2">
-                    phone number
-                </Typography>
+                <div>
+                    {phonenumber}
+                </div>
             </CardContent>
             <CardActions>
                 <Button size="small">Copy number</Button>

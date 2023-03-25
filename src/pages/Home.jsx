@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Container, TextField } from "@mui/material";
 import "../styles/Home.css";
+import { Button } from "@mui/material";
 
 function Home() {
+  const [value, setValue] = useState("");
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
   return (
     <div className="home-section">
       <h1>Making Healthcare Easier</h1>
@@ -26,17 +34,30 @@ function Home() {
               borderColor: "white",
             },
             "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-              {
-                borderColor: "white",
-              },
+            {
+              borderColor: "white",
+            },
             "& .MuiInputBase-input": {
               color: "white",
             },
           }}
+          value={value}
+          onChange={handleChange}
         />
+        <Button
+          component={Link}
+          key="Profile"
+          className="nav-link"
+          color="inherit"
+          style={{ marginTop: "2rem" }}
+          to={"/profile/" + value}
+        >
+          Search
+        </Button>
       </Container>
     </div>
   );
 }
 
 export default Home;
+

@@ -14,7 +14,7 @@ const inputStyle = {
   fontSize: "1.2rem", // Adjust this value to change the font size
 };
 
-const FormComponent = ({ config, onSubmit }) => {
+const FormComponent = ({ config, onSubmit,result }) => {
   const [formValues, setFormValues] = React.useState({});
 
   const handleChange = (event) => {
@@ -24,7 +24,7 @@ const FormComponent = ({ config, onSubmit }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(formValues);
+    onSubmit(formValues,result);
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -16,12 +16,15 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Logo from "./logo.png";
 import "./nav.css";
+import { auth } from "../firebaseconfig";
+import { signInWithGoogle, signOutWithGoogle } from "../firebaseLogin"
+
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
+  console.log(auth?.currentUser?.uid)
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
@@ -29,10 +32,17 @@ function Navbar() {
   const menuItems = [
     { text: "Home", path: "/" },
     { text: "About", path: "/about" },
-    { text: "Login", path: "/login" },
-    { text: "Register", path: "/register" },
     { text: "Models", path: "/models" },
   ];
+  const [isAuthenticated, setIsAuthenticated] = useState(auth.currentUser ? true : false);
+
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
+      setIsAuthenticated(user ? true : false);
+    });
+  }, []);
+
+
 
   return (
     <AppBar position="static" color="inherit" sx={{ padding: 2 }}>
@@ -46,6 +56,8 @@ function Navbar() {
         >
           Global Care
         </Typography>
+
+
 
         {isMobile ? (
           <>
@@ -70,6 +82,47 @@ function Navbar() {
               {item.text}
             </Button>
           ))
+
+        )
+
+        }
+        {!isMobile && (
+          <>
+            {isAuthenticated ? (
+              <>
+              
+                <Button
+                  key="Profile"
+                  component={Link}
+                  className="nav-link"
+                  color="inherit"
+                  to={"/profile/"+auth.currentUser.uid}
+
+                >
+                  Profile
+                </Button>
+                <Button
+                  onClick={signOutWithGoogle}
+                  key="Logout"
+                  component={Link}
+                  className="nav-link"
+                  color="inherit"
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Button
+                onClick={signInWithGoogle}
+                key="Login"
+                component={Link}
+                className="nav-link"
+                color="inherit"
+              >
+                Login
+              </Button>
+            )}
+          </>
         )}
       </Toolbar>
       {isMobile && (
@@ -84,25 +137,83 @@ function Navbar() {
               justifyContent: "center",
             }}
           >
-            {menuItems.map((item) => (
-              <ListItem
-                button
-                key={item.text}
-                component={Link}
-                to={item.path}
-                onClick={toggleMenu}
-                sx={{
-                  width: "100%",
-                  justifyContent: "center",
-                  textAlign: "center",
-                }}
-              >
-                <ListItemText
-                  primary={item.text}
-                  style={{ fontSize: "3rem" }}
-                />
-              </ListItem>
-            ))}
+            {
+              menuItems.map((item) => (
+                <ListItem
+                  button
+                  key={item.text}
+                  component={Link}
+                  to={item.path}
+                  onClick={toggleMenu}
+                  sx={{
+                    width: "100%",
+                    justifyContent: "center",
+                    textAlign: "center",
+                  }}
+                >
+                  <ListItemText
+                    primary={item.text}
+                    style={{ fontSize: "3rem" }}
+                  />
+                </ListItem>
+              ))
+            }
+
+            <ListItem
+              button
+              key="Login"
+              onClick={signInWithGoogle}
+
+              sx={{
+                width: "100%",
+                justifyContent: "center",
+                textAlign: "center",
+                display: isAuthenticated ? 'none' : 'flex' // hide when authenticated
+              }}
+            >
+              <ListItemText
+                primary="Login"
+                style={{ fontSize: "3rem" }}
+              />
+            </ListItem>
+            <ListItem
+              button
+              component={Link}
+              to={"/profile/"+auth.currentUser.uid}
+
+              onClick={toggleMenu}
+              key="Profile"
+              sx={{
+                width: "100%",
+                justifyContent: "center",
+                textAlign: "center",
+                display: isAuthenticated ? 'flex' : 'none' // hide when not authenticated
+              }}
+            >
+              <ListItemText
+                primary="Profile"
+                style={{ fontSize: "3rem" }}
+              />
+            </ListItem>
+            <ListItem
+              button
+              onClick={signOutWithGoogle}
+              key="Logout"
+              sx={{
+                width: "100%",
+                justifyContent: "center",
+                textAlign: "center",
+                display: isAuthenticated ? 'flex' : 'none' // hide when not authenticated
+              }}
+            >
+              <ListItemText
+                primary="Logout"
+                style={{ fontSize: "3rem" }}
+              />
+            </ListItem>
+
+
+
           </List>
         </Collapse>
       )}

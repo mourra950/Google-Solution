@@ -1,4 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
+import { googleprovider, auth, db } from "../firebaseconfig";
+import { useParams } from 'react-router-dom';
+import { doc, getDoc, getDocs, addDoc, collection, query, where } from "firebase/firestore";
 import PropTypes from "prop-types";
 import {
   Card,
@@ -18,6 +23,7 @@ import { QRCode, Button } from "antd";
 import data from "../data.json";
 import ConfusedImage from "../images/confused.jpg";
 import BasicCard from "../components/Emergencycontact";
+import BasicAccordion from "../components/BasicAcordion";
 
 const downloadQRCode = () => {
   const canvas = document.getElementById("myqrcode")?.querySelector("canvas");
@@ -99,7 +105,39 @@ function MedicalRecord({ record }) {
 }
 
 export default function Profile() {
+  let { profileId } = useParams();
   const [value, setValue] = useState(0);
+  const [contacts, setContacts] = useState([]);
+  const [Diagnosis, setDiagnosis] = useState([]);
+
+  async function getinfo() {
+    const docRef = collection(db, "Contacts");
+    const q = query(docRef, where("userId", "==", profileId));
+    const querySnapshot = await getDocs(q);
+    const newContacts = [];
+    querySnapshot.forEach((doc) => {
+      // Push each contact object to the newContacts array
+      newContacts.push(doc.data());
+    });
+    // Update the state array with the newContacts array
+    setContacts(newContacts);
+    const docRef1 = collection(db, "Diagnosis");
+    const q1 = query(docRef1, where("userId", "==", profileId));
+    const querySnapshot1 = await getDocs(q1);
+    const newDiagnosis = [];
+    querySnapshot1.forEach((doc) => {
+      // Push each contact object to the newContacts array
+      newDiagnosis.push(doc.data());
+    });
+    // Update the state array with the newContacts array
+    setDiagnosis(newDiagnosis);
+  }
+
+  useEffect(() => {
+    getinfo();
+    // Call the testdb function when the component mounts and authUser is true
+
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -120,61 +158,34 @@ export default function Profile() {
           >
             <Tab className="tabs_profile" label="Emergency Contact" {...a11yProps(0)} />
             <Tab className="tabs_profile" label="Medical History" {...a11yProps(1)} />
-            <Tab className="tabs_profile" label="Your ID" {...a11yProps(2)} />
+            <Tab className="tabs_profile" label="User ID" {...a11yProps(2)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-        <div className="cards-grid">
-        
-          <BasicCard/>
-          <BasicCard/>
+          <div className="cards-grid">
 
-          <BasicCard/>
+            {contacts.map((contact, index) => (
+              <BasicCard name={contact.name} relation={contact.relation} phonenumber={contact.phonenumber} />
+            ))}
 
-          <BasicCard/>
+
           </div>
 
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <div>
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography>Diabetes</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  Patient has Type 2 Diabetes
-                  </Typography>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2a-content"
-                id="panel2a-header"
-              >
-                <Typography>Peanut allergy</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-               user has extreme peanut allergies 
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-          </div>
-        
+        {Diagnosis.map((diagnosis, index) => (
+              <BasicAccordion name={diagnosis.name} message={diagnosis.message}  />
+            ))}
+
+
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <Typography style={{ textAlign: "center", color: "white" }}>
+          <div style={{ textAlign: "center", color: "white" }}>
             That is your ID you can engrave this number on any items that you
             wear every day or you can print the Qr code
             <br />
-            ID: 12123
-          </Typography>
+            ID: {profileId}
+          </div>
           <div
             style={{
               paddingTop: "16px",
@@ -185,7 +196,7 @@ export default function Profile() {
             id="myqrcode"
           >
             <QRCode
-              value="http://///"
+              value={profileId}
               style={{
                 marginBottom: 16,
               }}
@@ -201,3 +212,15 @@ export default function Profile() {
     </>
   );
 }
+
+
+// async function testdb() {
+//   const docRef = collection(db, "Contacts");
+//   const q = query(docRef, where("userId", "==", auth.currentUser.uid));
+//   const querySnapshot = await getDocs(q);
+//   querySnapshot.forEach((doc) => {
+//     // doc.data() is never undefined for query doc snapshots
+
+//   });
+
+// }
