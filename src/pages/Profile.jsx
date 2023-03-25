@@ -109,6 +109,7 @@ export default function Profile() {
   const [value, setValue] = useState(0);
   const [contacts, setContacts] = useState([]);
   const [Diagnosis, setDiagnosis] = useState([]);
+  const [Prescription, setPrescription] = useState([]);
 
   async function getinfo() {
     const docRef = collection(db, "Contacts");
@@ -130,7 +131,18 @@ export default function Profile() {
       newDiagnosis.push(doc.data());
     });
     // Update the state array with the newContacts array
+
+    const docRef2 = collection(db, "Prescription");
+    const q2 = query(docRef2, where("userId", "==", profileId));
+    const querySnapshot2 = await getDocs(q2);
+    querySnapshot2.forEach((doc) => {
+      // Push each contact object to the newContacts array
+      newDiagnosis.push(doc.data());
+    });
+    // Update the state array with the newContacts array
     setDiagnosis(newDiagnosis);
+
+
   }
 
   useEffect(() => {
@@ -173,9 +185,9 @@ export default function Profile() {
 
         </TabPanel>
         <TabPanel value={value} index={1}>
-        {Diagnosis.map((diagnosis, index) => (
-              <BasicAccordion name={diagnosis.name} message={diagnosis.message}  />
-            ))}
+          {Diagnosis.map((diagnosis, index) => (
+            <BasicAccordion name={diagnosis.name} message={diagnosis.message} />
+          ))}
 
 
         </TabPanel>
