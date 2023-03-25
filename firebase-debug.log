@@ -1,0 +1,136 @@
+[debug] [2023-03-25T22:45:52.858Z] ----------------------------------------------------------------------
+[debug] [2023-03-25T22:45:52.860Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Omar MOhamed\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-03-25T22:45:52.860Z] CLI Version:   11.25.1
+[debug] [2023-03-25T22:45:52.860Z] Platform:      win32
+[debug] [2023-03-25T22:45:52.860Z] Node Version:  v16.17.0
+[debug] [2023-03-25T22:45:52.861Z] Time:          Sun Mar 26 2023 00:45:52 GMT+0200 (Eastern European Standard Time)
+[debug] [2023-03-25T22:45:52.861Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-25T22:45:52.928Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-25T22:45:52.928Z] > authorizing via signed-in user (omar.m.a.yousef@gmail.com)
+[debug] [2023-03-25T22:45:52.929Z] [iam] checking project global-care-go for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-25T22:45:52.931Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/global-care-go:testIamPermissions [none]
+[debug] [2023-03-25T22:45:52.931Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/global-care-go:testIamPermissions x-goog-quota-user=projects/global-care-go
+[debug] [2023-03-25T22:45:52.931Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/global-care-go:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-25T22:45:55.068Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/global-care-go:testIamPermissions 200
+[debug] [2023-03-25T22:45:55.068Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/global-care-go:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-25T22:45:55.069Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/global-care-go [none]
+[debug] [2023-03-25T22:45:57.454Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/global-care-go 200
+[debug] [2023-03-25T22:45:57.454Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/global-care-go {"projectId":"global-care-go","projectNumber":"294147855997","displayName":"Global Care","name":"projects/global-care-go","resources":{"hostingSite":"global-care-go"},"state":"ACTIVE","etag":"1_00c9a68f-7b25-4afb-a118-a4dbc23e9c3a"}
+[info] 
+[info] === Deploying to 'global-care-go'...
+[info] 
+[info] i  deploying firestore, hosting 
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2023-03-25T22:45:57.459Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/global-care-go:test [none]
+[debug] [2023-03-25T22:45:57.460Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/global-care-go:test [omitted]
+[debug] [2023-03-25T22:45:59.661Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/global-care-go:test 200
+[debug] [2023-03-25T22:45:59.661Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/global-care-go:test {}
+[info] +  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2023-03-25T22:45:59.668Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/global-care-go/versions [none]
+[debug] [2023-03-25T22:45:59.668Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/global-care-go/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2023-03-25T22:46:02.076Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/global-care-go/versions 200
+[debug] [2023-03-25T22:46:02.077Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/global-care-go/versions {"name":"projects/294147855997/sites/global-care-go/versions/c3177a2a73469b34","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  firestore: deploying indexes... 
+[debug] [2023-03-25T22:46:02.080Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/global-care-go/releases pageSize=10&pageToken=
+[debug] [2023-03-25T22:46:02.082Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/global-care-go/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2023-03-25T22:46:03.800Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/global-care-go/releases 200
+[debug] [2023-03-25T22:46:03.801Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/global-care-go/releases {"releases":[{"name":"projects/global-care-go/releases/cloud.firestore","rulesetName":"projects/global-care-go/rulesets/15c0134c-89cf-48f9-a2a6-0f8794e42d49","createTime":"2023-03-24T16:59:59.181334Z","updateTime":"2023-03-25T22:33:21.695210Z"}]}
+[debug] [2023-03-25T22:46:03.802Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/global-care-go/rulesets/15c0134c-89cf-48f9-a2a6-0f8794e42d49 [none]
+[debug] [2023-03-25T22:46:04.327Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/global-care-go/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2023-03-25T22:46:04.328Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/global-care-go/databases/(default)/collectionGroups/-/indexes {}
+[debug] [2023-03-25T22:46:04.328Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/global-care-go/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2023-03-25T22:46:05.343Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/global-care-go/rulesets/15c0134c-89cf-48f9-a2a6-0f8794e42d49 200
+[debug] [2023-03-25T22:46:05.343Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/global-care-go/rulesets/15c0134c-89cf-48f9-a2a6-0f8794e42d49 [omitted]
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload... 
+[debug] [2023-03-25T22:46:05.450Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/global-care-go/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2023-03-25T22:46:05.450Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/global-care-go/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/global-care-go/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[info] +  firestore: deployed indexes in firestore.indexes.json successfully for (default) database 
+[info] i  hosting[global-care-go]: beginning deploy... 
+[info] i  hosting[global-care-go]: found 16 files in build 
+[debug] [2023-03-25T22:46:05.466Z] [hosting] uploading with 200 concurrency
+[debug] [2023-03-25T22:46:05.474Z] [hosting] hash cache [YnVpbGQ] stored for 16 files
+[debug] [2023-03-25T22:46:05.475Z] [hosting][hash queue][FINAL] {"max":2,"min":0,"avg":0,"active":0,"complete":16,"success":16,"errored":0,"retried":0,"total":16,"elapsed":5}
+[debug] [2023-03-25T22:46:05.475Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/294147855997/sites/global-care-go/versions/c3177a2a73469b34:populateFiles [none]
+[debug] [2023-03-25T22:46:05.476Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/294147855997/sites/global-care-go/versions/c3177a2a73469b34:populateFiles {"files":{"/asset-manifest.json":"5e15af86e466e5ed55dc546993655911cbcbc2230f3a2a0ed339fdc95827c554","/favicon.ico":"eae62e993eb980ec8a25058c39d5a51feab118bd2100c4deebb2a9c158ec11f9\r","/index.html":"c279a21b3dd11b749e629c53e1b3b7def3349da49933b2ffe0aad79c74ab69e1","/logo192.png":"3ee59515172ee198f3be375979df15ac5345183e656720a381b8872b2a39dc8b\r","/logo512.png":"ee7e2f3fdb8209c4b6fd7bef6ba50d1b9dba30a25bb5c3126df057e1cb6f5331\r","/manifest.json":"5c997de1364b8be939319fa9209abd77f2caf7f8844999a9e2e9173f844e7840\r","/robots.txt":"b2090cf9761ef60aa06e4fab97679bd43dfa5e5df073701ead5879d7c68f1ec5\r","/static/css/main.acfcfbe5.css":"4688a270c2739544fc0c7ccf4a575b454b8c9e94ceae4be996b46c3f31e25e27","/static/css/main.acfcfbe5.css.map":"cc917ed1988d4c5a06c670b3aaa9d74801f66c0e2eaf5e3d75f078e4eb7fd001","/static/js/787.d3befce1.chunk.js":"58d7494015a058ef98b43bc26b796bbb9a8e7e5ada90302fa7208383e87aee66","/static/js/787.d3befce1.chunk.js.map":"fb98a359099406d01e16ce62bcac8b50c4c2b279e7e1e78916074f028160e016","/static/js/main.e2766223.js":"2f38a58b35e2dfb768b5215cc0f7b4e2bf3a8bf31dbc7e55bd56738a75ec2b09","/static/js/main.e2766223.js.LICENSE.txt":"785bb7f512fdb785e35340b45bc988725143de55ac02c0d4a41f4a2b4d851d98","/static/js/main.e2766223.js.map":"0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e","/static/media/confused.b0f2bb9e3a4110ac351a.jpg":"9ec4d11f828d5be02ce094e84e424e8107c25e0bd5f5630c02c7b489be234639","/static/media/logo.6df92d85ca7e03731c9e.png":"b811a4e2a3a9d4abaa0ba5f012fa707e1a11f8acef4f762016608b2d47419815"}}
+[debug] [2023-03-25T22:46:08.702Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/294147855997/sites/global-care-go/versions/c3177a2a73469b34:populateFiles 200
+[debug] [2023-03-25T22:46:08.702Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/294147855997/sites/global-care-go/versions/c3177a2a73469b34:populateFiles {"uploadRequiredHashes":["0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/global-care-go/versions/c3177a2a73469b34/files"}
+[debug] [2023-03-25T22:46:08.703Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/global-care-go/versions/c3177a2a73469b34/files/0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e [none]
+[debug] [2023-03-25T22:46:08.703Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/global-care-go/versions/c3177a2a73469b34/files/0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e [stream]
+[debug] [2023-03-25T22:46:08.705Z] [hosting][populate queue][FINAL] {"max":3231,"min":3231,"avg":3231,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":3233}
+[debug] [2023-03-25T22:46:08.705Z] [hosting] uploads queued: 1
+[debug] [2023-03-25T22:48:14.874Z] [uploadQueue] Retrying task 0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e
+[debug] [2023-03-25T22:48:14.875Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/global-care-go/versions/c3177a2a73469b34/files/0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e [none]
+[debug] [2023-03-25T22:48:14.875Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/global-care-go/versions/c3177a2a73469b34/files/0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e [stream]
+[debug] [2023-03-25T22:50:21.444Z] [uploadQueue] Retrying task 0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e
+[debug] [2023-03-25T22:50:21.446Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/global-care-go/versions/c3177a2a73469b34/files/0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e [none]
+[debug] [2023-03-25T22:50:21.446Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/global-care-go/versions/c3177a2a73469b34/files/0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e [stream]
+[debug] [2023-03-25T22:53:17.651Z] ----------------------------------------------------------------------
+[debug] [2023-03-25T22:53:17.652Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Omar MOhamed\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-03-25T22:53:17.653Z] CLI Version:   11.25.1
+[debug] [2023-03-25T22:53:17.653Z] Platform:      win32
+[debug] [2023-03-25T22:53:17.653Z] Node Version:  v16.17.0
+[debug] [2023-03-25T22:53:17.654Z] Time:          Sun Mar 26 2023 00:53:17 GMT+0200 (Eastern European Standard Time)
+[debug] [2023-03-25T22:53:17.654Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-25T22:53:17.746Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-25T22:53:17.747Z] > authorizing via signed-in user (omar.m.a.yousef@gmail.com)
+[debug] [2023-03-25T22:53:17.747Z] [iam] checking project global-care-go for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-25T22:53:17.750Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/global-care-go:testIamPermissions [none]
+[debug] [2023-03-25T22:53:17.750Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/global-care-go:testIamPermissions x-goog-quota-user=projects/global-care-go
+[debug] [2023-03-25T22:53:17.750Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/global-care-go:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-25T22:53:19.882Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/global-care-go:testIamPermissions 200
+[debug] [2023-03-25T22:53:19.882Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/global-care-go:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-25T22:53:19.884Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/global-care-go [none]
+[debug] [2023-03-25T22:53:21.083Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/global-care-go 200
+[debug] [2023-03-25T22:53:21.083Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/global-care-go {"projectId":"global-care-go","projectNumber":"294147855997","displayName":"Global Care","name":"projects/global-care-go","resources":{"hostingSite":"global-care-go"},"state":"ACTIVE","etag":"1_00c9a68f-7b25-4afb-a118-a4dbc23e9c3a"}
+[info] 
+[info] === Deploying to 'global-care-go'...
+[info] 
+[info] i  deploying firestore, hosting 
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2023-03-25T22:53:21.088Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/global-care-go:test [none]
+[debug] [2023-03-25T22:53:21.088Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/global-care-go:test [omitted]
+[debug] [2023-03-25T22:53:22.792Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/global-care-go:test 200
+[debug] [2023-03-25T22:53:22.792Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/global-care-go:test {}
+[info] +  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2023-03-25T22:53:22.796Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/global-care-go/versions [none]
+[debug] [2023-03-25T22:53:22.796Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/global-care-go/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2023-03-25T22:53:26.080Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/global-care-go/versions 200
+[debug] [2023-03-25T22:53:26.080Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/global-care-go/versions {"name":"projects/294147855997/sites/global-care-go/versions/8770468ea1c33361","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  firestore: deploying indexes... 
+[debug] [2023-03-25T22:53:26.083Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/global-care-go/releases pageSize=10&pageToken=
+[debug] [2023-03-25T22:53:26.085Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/global-care-go/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2023-03-25T22:53:27.147Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/global-care-go/releases 200
+[debug] [2023-03-25T22:53:27.148Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/global-care-go/releases {"releases":[{"name":"projects/global-care-go/releases/cloud.firestore","rulesetName":"projects/global-care-go/rulesets/15c0134c-89cf-48f9-a2a6-0f8794e42d49","createTime":"2023-03-24T16:59:59.181334Z","updateTime":"2023-03-25T22:33:21.695210Z"}]}
+[debug] [2023-03-25T22:53:27.148Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/global-care-go/rulesets/15c0134c-89cf-48f9-a2a6-0f8794e42d49 [none]
+[debug] [2023-03-25T22:53:27.438Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/global-care-go/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2023-03-25T22:53:27.438Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/global-care-go/databases/(default)/collectionGroups/-/indexes {}
+[debug] [2023-03-25T22:53:27.439Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/global-care-go/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2023-03-25T22:53:28.152Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/global-care-go/rulesets/15c0134c-89cf-48f9-a2a6-0f8794e42d49 200
+[debug] [2023-03-25T22:53:28.152Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/global-care-go/rulesets/15c0134c-89cf-48f9-a2a6-0f8794e42d49 [omitted]
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload... 
+[debug] [2023-03-25T22:53:28.604Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/global-care-go/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2023-03-25T22:53:28.604Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/global-care-go/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/global-care-go/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[info] +  firestore: deployed indexes in firestore.indexes.json successfully for (default) database 
+[info] i  hosting[global-care-go]: beginning deploy... 
+[info] i  hosting[global-care-go]: found 16 files in build 
+[debug] [2023-03-25T22:53:28.617Z] [hosting] uploading with 200 concurrency
+[debug] [2023-03-25T22:53:28.624Z] [hosting] hash cache [YnVpbGQ] stored for 16 files
+[debug] [2023-03-25T22:53:28.624Z] [hosting][hash queue][FINAL] {"max":2,"min":0,"avg":0,"active":0,"complete":16,"success":16,"errored":0,"retried":0,"total":16,"elapsed":4}
+[debug] [2023-03-25T22:53:28.625Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/294147855997/sites/global-care-go/versions/8770468ea1c33361:populateFiles [none]
+[debug] [2023-03-25T22:53:28.625Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/294147855997/sites/global-care-go/versions/8770468ea1c33361:populateFiles {"files":{"/asset-manifest.json":"5e15af86e466e5ed55dc546993655911cbcbc2230f3a2a0ed339fdc95827c554","/favicon.ico":"eae62e993eb980ec8a25058c39d5a51feab118bd2100c4deebb2a9c158ec11f9\r","/index.html":"c279a21b3dd11b749e629c53e1b3b7def3349da49933b2ffe0aad79c74ab69e1","/logo192.png":"3ee59515172ee198f3be375979df15ac5345183e656720a381b8872b2a39dc8b\r","/logo512.png":"ee7e2f3fdb8209c4b6fd7bef6ba50d1b9dba30a25bb5c3126df057e1cb6f5331\r","/manifest.json":"5c997de1364b8be939319fa9209abd77f2caf7f8844999a9e2e9173f844e7840\r","/robots.txt":"b2090cf9761ef60aa06e4fab97679bd43dfa5e5df073701ead5879d7c68f1ec5\r","/static/css/main.acfcfbe5.css":"4688a270c2739544fc0c7ccf4a575b454b8c9e94ceae4be996b46c3f31e25e27","/static/css/main.acfcfbe5.css.map":"cc917ed1988d4c5a06c670b3aaa9d74801f66c0e2eaf5e3d75f078e4eb7fd001","/static/js/787.d3befce1.chunk.js":"58d7494015a058ef98b43bc26b796bbb9a8e7e5ada90302fa7208383e87aee66","/static/js/787.d3befce1.chunk.js.map":"fb98a359099406d01e16ce62bcac8b50c4c2b279e7e1e78916074f028160e016","/static/js/main.e2766223.js":"2f38a58b35e2dfb768b5215cc0f7b4e2bf3a8bf31dbc7e55bd56738a75ec2b09","/static/js/main.e2766223.js.LICENSE.txt":"785bb7f512fdb785e35340b45bc988725143de55ac02c0d4a41f4a2b4d851d98","/static/js/main.e2766223.js.map":"0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e","/static/media/confused.b0f2bb9e3a4110ac351a.jpg":"9ec4d11f828d5be02ce094e84e424e8107c25e0bd5f5630c02c7b489be234639","/static/media/logo.6df92d85ca7e03731c9e.png":"b811a4e2a3a9d4abaa0ba5f012fa707e1a11f8acef4f762016608b2d47419815"}}
+[debug] [2023-03-25T22:53:29.912Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/294147855997/sites/global-care-go/versions/8770468ea1c33361:populateFiles 200
+[debug] [2023-03-25T22:53:29.913Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/294147855997/sites/global-care-go/versions/8770468ea1c33361:populateFiles {"uploadRequiredHashes":["0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/global-care-go/versions/8770468ea1c33361/files"}
+[debug] [2023-03-25T22:53:29.913Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/global-care-go/versions/8770468ea1c33361/files/0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e [none]
+[debug] [2023-03-25T22:53:29.914Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/global-care-go/versions/8770468ea1c33361/files/0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e [stream]
+[debug] [2023-03-25T22:53:29.914Z] [hosting][populate queue][FINAL] {"max":1290,"min":1290,"avg":1290,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1291}
+[debug] [2023-03-25T22:53:29.914Z] [hosting] uploads queued: 1
+[debug] [2023-03-25T22:55:36.078Z] [uploadQueue] Retrying task 0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e
+[debug] [2023-03-25T22:55:36.080Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/global-care-go/versions/8770468ea1c33361/files/0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e [none]
+[debug] [2023-03-25T22:55:36.080Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/global-care-go/versions/8770468ea1c33361/files/0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e [stream]
+[debug] [2023-03-25T22:57:42.651Z] [uploadQueue] Retrying task 0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e
+[debug] [2023-03-25T22:57:42.652Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/global-care-go/versions/8770468ea1c33361/files/0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e [none]
+[debug] [2023-03-25T22:57:42.652Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/global-care-go/versions/8770468ea1c33361/files/0266c9487b8bf0757a1cb5a918f7e21972ee56e2272b846e5d2e790b8d18e41e [stream]

@@ -41,7 +41,8 @@ const Form = () => {
       await addDoc(collection(db, "Diagnosis"), {
         "userId": auth.currentUser.uid,
         "name": formData.name,
-        "message": formData.message
+        "message": formData.message,
+        "date":formData.date
       })
     }
   }

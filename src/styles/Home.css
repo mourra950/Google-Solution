@@ -1,5 +1,8 @@
 body {
-  background-color: var(--secondary-dark);
+  background-image: linear-gradient(to bottom right, #38b2ac, #4299e1);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 }
 
 .home-section {

@@ -1,8 +1,33 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if false;
+  match /Contacts/{documentId} {
+      allow read: if true;
+      
+      // Allow only the document owner to write to Contact documents
+      allow create: if request.auth != null && request.resource.data.keys().hasAll(['name', 'relation', 'phonenumber']);
+	
+			allow update: if (request.auth.uid == resource.data.userId)
+
     }
-  }
+    match /Diagnosis/{documentId} {
+      allow read: if true;
+      
+      // Allow only the document owner to write to Contact documents
+      allow create: if request.auth != null && request.resource.data.keys().hasAll(['name', 'message', 'date']);
+	
+			allow update: if (request.auth.uid == resource.data.userId)
+
+    }
+    
+    match /Prescription/{documentId} {
+      allow read: if true;
+      
+      // Allow only the document owner to write to Contact documents
+      allow create: if request.auth != null && request.resource.data.keys().hasAll(['name', 'dosage', 'date']);
+	
+			allow update: if (request.auth.uid == resource.data.userId)
+
+    }
+	}
 }
