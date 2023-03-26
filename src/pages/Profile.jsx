@@ -12,6 +12,7 @@ import {
   query,
   where,
   updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import PropTypes from "prop-types";
 import {
@@ -142,6 +143,18 @@ export default function Profile() {
     setDiagnosis(newDiagnosis);
   }
 
+  async function handleDeleteContact(contactId) {
+    const docRef = doc(db, "Contacts", contactId);
+    await deleteDoc(docRef);
+    getinfo(); // Refresh the contacts list after deleting
+  }
+
+  async function handleDeleteDiagnosis(diagnosisId) {
+    const docRef = doc(db, "Diagnosis", diagnosisId);
+    await deleteDoc(docRef);
+    getinfo(); // Refresh the diagnosis list after deleting
+  }
+
   async function handleUpdateContact(updatedContact) {
     const docRef = doc(db, "Contacts", updatedContact.id);
     await updateDoc(docRef, {
@@ -204,7 +217,11 @@ export default function Profile() {
                   relation={contact.relation}
                   phonenumber={contact.phonenumber}
                 />
-                <EditContact contact={contact} onUpdate={handleUpdateContact} />
+                <EditContact
+                  contact={contact}
+                  onUpdate={handleUpdateContact}
+                  onDelete={handleDeleteContact}
+                />
               </Grid>
             ))}
           </Grid>
@@ -220,6 +237,7 @@ export default function Profile() {
                 <EditDiagnosis
                   diagnosis={diagnosis}
                   onUpdate={handleUpdateDiagnosis}
+                  onDelete={handleDeleteDiagnosis}
                 />
               </Grid>
             ))}

@@ -8,7 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 
-function EditDiagnosis({ diagnosis, onUpdate }) {
+function EditDiagnosis({ diagnosis, onUpdate, onDelete }) {
   const [open, setOpen] = useState(false);
   const [updatedDiagnosis, setUpdatedDiagnosis] = useState(diagnosis);
 
@@ -41,6 +41,20 @@ function EditDiagnosis({ diagnosis, onUpdate }) {
       >
         Edit
       </Button>
+
+      <Button
+        variant="outlined"
+        style={{
+          color: "white",
+          border: "1px solid firebrick",
+          marginLeft: "8px",
+        }}
+        onClick={() => onDelete(diagnosis.id)}
+        color="error"
+      >
+        Delete
+      </Button>
+
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit Diagnosis</DialogTitle>
         <DialogContent>

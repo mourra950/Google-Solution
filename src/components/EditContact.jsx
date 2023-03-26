@@ -8,7 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 
-function EditContact({ contact, onUpdate }) {
+function EditContact({ contact, onUpdate, onDelete }) {
   const [open, setOpen] = useState(false);
   const [updatedContact, setUpdatedContact] = useState(contact);
 
@@ -41,6 +41,20 @@ function EditContact({ contact, onUpdate }) {
       >
         Edit
       </Button>
+
+      <Button
+        variant="outlined"
+        style={{
+          color: "white",
+          border: "1px solid firebrick",
+          marginLeft: "8px",
+        }}
+        onClick={() => onDelete(contact.id)}
+        color="error"
+      >
+        Delete
+      </Button>
+
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit Contact</DialogTitle>
         <DialogContent>
