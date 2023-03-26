@@ -2,8 +2,17 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { googleprovider, auth, db } from "../firebaseconfig";
-import { useParams } from 'react-router-dom';
-import { doc, getDoc, getDocs, addDoc, collection, query, where } from "firebase/firestore";
+import { useParams } from "react-router-dom";
+import {
+  doc,
+  getDoc,
+  getDocs,
+  addDoc,
+  collection,
+  query,
+  where,
+  updateDoc,
+} from "firebase/firestore";
 import PropTypes from "prop-types";
 import {
   Card,
@@ -15,15 +24,17 @@ import {
   Tabs,
   Accordion,
   AccordionSummary,
-  AccordionDetails
+  AccordionDetails,
 } from "@mui/material";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "../styles/Profile.css";
 import { QRCode, Button } from "antd";
 import data from "../data.json";
 import ConfusedImage from "../images/confused.jpg";
 import BasicCard from "../components/Emergencycontact";
 import BasicAccordion from "../components/BasicAcordion";
+import EditContact from "../components/EditContact";
+import EditDiagnosis from "../components/EditDiagnosis";
 
 const downloadQRCode = () => {
   const canvas = document.getElementById("myqrcode")?.querySelector("canvas");
@@ -117,38 +128,41 @@ export default function Profile() {
     const querySnapshot = await getDocs(q);
     const newContacts = [];
     querySnapshot.forEach((doc) => {
-      // Push each contact object to the newContacts array
-      newContacts.push(doc.data());
+      newContacts.push({ ...doc.data(), id: doc.id });
     });
-    // Update the state array with the newContacts array
     setContacts(newContacts);
+
     const docRef1 = collection(db, "Diagnosis");
     const q1 = query(docRef1, where("userId", "==", profileId));
     const querySnapshot1 = await getDocs(q1);
     const newDiagnosis = [];
     querySnapshot1.forEach((doc) => {
-      // Push each contact object to the newContacts array
-      newDiagnosis.push(doc.data());
+      newDiagnosis.push({ ...doc.data(), id: doc.id });
     });
-    // Update the state array with the newContacts array
-
-    const docRef2 = collection(db, "Prescription");
-    const q2 = query(docRef2, where("userId", "==", profileId));
-    const querySnapshot2 = await getDocs(q2);
-    querySnapshot2.forEach((doc) => {
-      // Push each contact object to the newContacts array
-      newDiagnosis.push(doc.data());
-    });
-    // Update the state array with the newContacts array
     setDiagnosis(newDiagnosis);
+  }
 
+  async function handleUpdateContact(updatedContact) {
+    const docRef = doc(db, "Contacts", updatedContact.id);
+    await updateDoc(docRef, {
+      name: updatedContact.name,
+      relation: updatedContact.relation,
+      phonenumber: updatedContact.phonenumber,
+    });
+    getinfo(); // Refresh the contacts list after updating
+  }
 
+  async function handleUpdateDiagnosis(updatedDiagnosis) {
+    const docRef = doc(db, "Diagnosis", updatedDiagnosis.id);
+    await updateDoc(docRef, {
+      name: updatedDiagnosis.name,
+      message: updatedDiagnosis.message,
+    });
+    getinfo(); // Refresh the diagnosis list after updating
   }
 
   useEffect(() => {
     getinfo();
-    // Call the testdb function when the component mounts and authUser is true
-
   }, []);
 
   const handleChange = (event, newValue) => {
@@ -168,28 +182,48 @@ export default function Profile() {
             onChange={handleChange}
             aria-label="basic tabs example"
           >
-            <Tab className="tabs_profile" label="Emergency Contact" {...a11yProps(0)} />
-            <Tab className="tabs_profile" label="Medical History" {...a11yProps(1)} />
+            <Tab
+              className="tabs_profile"
+              label="Emergency Contact"
+              {...a11yProps(0)}
+            />
+            <Tab
+              className="tabs_profile"
+              label="Medical History"
+              {...a11yProps(1)}
+            />
             <Tab className="tabs_profile" label="User ID" {...a11yProps(2)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <div className="cards-grid">
-
+          <Grid container spacing={2}>
             {contacts.map((contact, index) => (
-              <BasicCard name={contact.name} relation={contact.relation} phonenumber={contact.phonenumber} />
+              <Grid item xs={12} sm={6} key={index}>
+                <BasicCard
+                  name={contact.name}
+                  relation={contact.relation}
+                  phonenumber={contact.phonenumber}
+                />
+                <EditContact contact={contact} onUpdate={handleUpdateContact} />
+              </Grid>
             ))}
-
-
-          </div>
-
+          </Grid>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          {Diagnosis.map((diagnosis, index) => (
-            <BasicAccordion name={diagnosis.name} message={diagnosis.message} />
-          ))}
-
-
+          <Grid container spacing={2}>
+            {Diagnosis.map((diagnosis, index) => (
+              <Grid item xs={12} sm={6} key={index}>
+                <BasicAccordion
+                  name={diagnosis.name}
+                  message={diagnosis.message}
+                />
+                <EditDiagnosis
+                  diagnosis={diagnosis}
+                  onUpdate={handleUpdateDiagnosis}
+                />
+              </Grid>
+            ))}
+          </Grid>
         </TabPanel>
         <TabPanel value={value} index={2}>
           <div style={{ textAlign: "center", color: "white" }}>
@@ -224,15 +258,3 @@ export default function Profile() {
     </>
   );
 }
-
-
-// async function testdb() {
-//   const docRef = collection(db, "Contacts");
-//   const q = query(docRef, where("userId", "==", auth.currentUser.uid));
-//   const querySnapshot = await getDocs(q);
-//   querySnapshot.forEach((doc) => {
-//     // doc.data() is never undefined for query doc snapshots
-
-//   });
-
-// }
