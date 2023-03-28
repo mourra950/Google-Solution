@@ -1,25 +1,25 @@
-.MuiTabs-flexContainer,.t
-{
-    display: flex;
-    justify-content: space-around;
-    color: white;
+.MuiTabs-flexContainer,
+.t {
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-around;
+  color: white;
 }
-.MuiTabs-flexContainer{
-    background-color: rgb(14, 19, 56);
+.MuiTabs-flexContainer {
+  background-color: rgb(14, 19, 56);
 }
-.t{
-    padding: 0 10px;
-    height: 100px;
-    background-color: white;
-    color: black;
-    outline: 2px;
+.t {
+  padding: 0 10px;
+  height: 100px;
+  background-color: white;
+  color: black;
+  outline: 2px;
 }
-button.MuiButtonBase-root{
-    color:rgb(0, 0, 0);
-    outline: 2px;
-
+button.MuiButtonBase-root {
+  color: rgb(0, 0, 0);
+  outline: 2px;
 }
-button.tabs_profile
-{
-    color: azure;
+button.tabs_profile {
+  color: azure;
+  font-size: 1.5vw;
 }

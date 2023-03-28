@@ -1,13 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
+
 import React, { useState, useEffect } from "react";
-import { googleprovider, auth, db } from "../firebaseconfig";
+import { auth, db } from "../firebaseconfig";
 import { useParams } from "react-router-dom";
 import {
   doc,
-  getDoc,
   getDocs,
-  addDoc,
   collection,
   query,
   where,
@@ -16,26 +13,20 @@ import {
 } from "firebase/firestore";
 import PropTypes from "prop-types";
 import {
-  Card,
-  CardContent,
   Grid,
   Typography,
   Box,
   Tab,
   Tabs,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "../styles/Profile.css";
 import { QRCode, Button } from "antd";
-import data from "../data.json";
-import ConfusedImage from "../images/confused.jpg";
 import BasicCard from "../components/Emergencycontact";
 import BasicAccordion from "../components/BasicAcordion";
 import EditContact from "../components/EditContact";
 import EditDiagnosis from "../components/EditDiagnosis";
+import EditPrescription from "../components/EditPrescription";
+
 
 const downloadQRCode = () => {
   const canvas = document.getElementById("myqrcode")?.querySelector("canvas");
@@ -83,39 +74,6 @@ function a11yProps(index) {
   };
 }
 
-function MedicalRecord({ record }) {
-  return (
-    <Card sx={{ minWidth: 275, marginBottom: 2 }}>
-      <CardContent>
-        <Grid container spacing={2}>
-          {record.diabetes ? (
-            <>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="body1" gutterBottom>
-                  Diabetes type: {record.diabetes_data.type}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="body1" gutterBottom>
-                  Blood sugar level: {record.diabetes_data.sugar}
-                </Typography>
-              </Grid>
-            </>
-          ) : (
-            <Grid item xs={12}>
-              <img
-                src={ConfusedImage}
-                alt="Confused"
-                style={{ width: "70%" }}
-              />
-            </Grid>
-          )}
-        </Grid>
-      </CardContent>
-    </Card>
-  );
-}
-
 export default function Profile() {
   let { profileId } = useParams();
   const [value, setValue] = useState(0);
@@ -123,7 +81,9 @@ export default function Profile() {
   const [Diagnosis, setDiagnosis] = useState([]);
   const [Prescription, setPrescription] = useState([]);
 
+
   async function getinfo() {
+
     const docRef = collection(db, "Contacts");
     const q = query(docRef, where("userId", "==", profileId));
     const querySnapshot = await getDocs(q);
@@ -141,6 +101,16 @@ export default function Profile() {
       newDiagnosis.push({ ...doc.data(), id: doc.id });
     });
     setDiagnosis(newDiagnosis);
+
+    const docRef2 = collection(db, "Prescription");
+    const q2 = query(docRef2, where("userId", "==", profileId));
+    const querySnapshot2 = await getDocs(q2);
+    const newPre = [];
+
+    querySnapshot2.forEach((doc) => {
+      newPre.push({ ...doc.data(), id: doc.id });
+    });
+    setPrescription(newPre);
   }
 
   async function handleDeleteContact(contactId) {
@@ -154,6 +124,12 @@ export default function Profile() {
     await deleteDoc(docRef);
     getinfo(); // Refresh the diagnosis list after deleting
   }
+  async function handleDeletePrescription(prescriptionsId) {
+    const docRef = doc(db, "Prescription", prescriptionsId);
+    await deleteDoc(docRef);
+    getinfo(); // Refresh the diagnosis list after deleting
+  }
+
 
   async function handleUpdateContact(updatedContact) {
     const docRef = doc(db, "Contacts", updatedContact.id);
@@ -173,22 +149,30 @@ export default function Profile() {
     });
     getinfo(); // Refresh the diagnosis list after updating
   }
+  async function handleUpdatePrescription(updatedPrescription) {
+    const docRef = doc(db, "Prescription", updatedPrescription.id);
+    await updateDoc(docRef, {
+      name: updatedPrescription.name,
+      dosage: updatedPrescription.dosage,
+    });
+    getinfo(); // Refresh the diagnosis list after updating
+  }
 
   useEffect(() => {
     getinfo();
-  }, []);
+
+  }, [profileId]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const patientName = data[0].name;
 
   return (
     <>
-      <h2 className="t">{patientName}</h2>
 
-      <Box sx={{ width: "100%" }}>
+
+      <Box sx={{ width: "100%", backgroundColor: "#003459" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
             value={value}
@@ -198,6 +182,7 @@ export default function Profile() {
             <Tab
               className="tabs_profile"
               label="Emergency Contact"
+
               {...a11yProps(0)}
             />
             <Tab
@@ -212,38 +197,63 @@ export default function Profile() {
           <Grid container spacing={2}>
             {contacts.map((contact, index) => (
               <Grid item xs={12} sm={6} key={index}>
-                <BasicCard
-                  name={contact.name}
-                  relation={contact.relation}
-                  phonenumber={contact.phonenumber}
-                />
-                <EditContact
-                  contact={contact}
-                  onUpdate={handleUpdateContact}
-                  onDelete={handleDeleteContact}
-                />
+                <div >
+                  <BasicCard
+                    name={contact.name}
+                    relation={contact.relation}
+                    phonenumber={contact.phonenumber}
+                  />
+                  {auth?.currentUser?.uid === profileId && (
+                    <EditContact style={{ background: "white" }}
+                      contact={contact}
+                      onUpdate={handleUpdateContact}
+                      onDelete={handleDeleteContact}
+                    />
+                  )}
+                </div>
               </Grid>
             ))}
           </Grid>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Grid container spacing={2}>
-            {Diagnosis.map((diagnosis, index) => (
-              <Grid item xs={12} sm={6} key={index}>
-                <BasicAccordion
-                  name={diagnosis.name}
-                  message={diagnosis.message}
-                />
+
+          {Diagnosis.map((diagnosis, index) => (
+            <>
+              <BasicAccordion
+                name={diagnosis.name}
+                message={diagnosis.message}
+                date={diagnosis.date}
+
+              />
+              {auth?.currentUser?.uid === profileId && (
                 <EditDiagnosis
                   diagnosis={diagnosis}
                   onUpdate={handleUpdateDiagnosis}
                   onDelete={handleDeleteDiagnosis}
                 />
-              </Grid>
-            ))}
-          </Grid>
+              )}
+            </>
+          ))}
+          {Prescription.map((prescription, index) => (
+            <>
+              <BasicAccordion
+                name={prescription.name}
+                message={"dosage :" + prescription.dosage}
+                date={prescription.date}
+
+              />
+              {auth?.currentUser?.uid === profileId && (
+                <EditPrescription
+                  prescription={prescription}
+                  onUpdate={handleUpdatePrescription}
+                  onDelete={handleDeletePrescription}
+                />
+              )}
+            </>
+          ))}
         </TabPanel>
-        <TabPanel value={value} index={2}>
+
+        <TabPanel value={value} index={2} >
           <div style={{ textAlign: "center", color: "white" }}>
             That is your ID you can engrave this number on any items that you
             wear every day or you can print the Qr code
@@ -260,7 +270,7 @@ export default function Profile() {
             id="myqrcode"
           >
             <QRCode
-              value={profileId}
+              value={"https://global-care-go.web.app/profile/" + profileId}
               style={{
                 marginBottom: 16,
               }}

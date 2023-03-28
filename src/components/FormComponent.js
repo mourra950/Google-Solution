@@ -1,77 +1,70 @@
-// FormComponent.js
 import React from "react";
-import {
-  TextField,
-  Button,
-  Grid,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
-} from "@mui/material";
+import { Form, Input, Button, Select, DatePicker } from "antd";
+
+const { Option } = Select;
 
 const inputStyle = {
   fontSize: "1.2rem", // Adjust this value to change the font size
 };
 
-const FormComponent = ({ config, onSubmit,result }) => {
-  const [formValues, setFormValues] = React.useState({});
+const FormComponent = ({ config, onSubmit, result }) => {
+  const [form] = Form.useForm();
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormValues((prev) => ({ ...prev, [name]: value }));
+  const handleSubmit = (values) => {
+    
+    const formattedDate = values?.date?.format("YYYY-MM-DD");
+    console.log({ ...values, date: formattedDate })
+
+    onSubmit({ ...values, date: formattedDate },result);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onSubmit(formValues,result);
+  const handleReset = () => {
+    form.resetFields();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Grid container spacing={2}>
+    <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "left" }}>
+      <Form
+        form={form}
+        onFinish={handleSubmit}
+        autoComplete="off"
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 16 }}
+      >
         {config.map((field) => (
-          <Grid item key={field.name} xs={12} style={{ margin: "12px 0px" }}>
+          <Form.Item
+            key={field.name}
+            label={field.label}
+            name={field.name}
+            rules={[{ required: field.required }]}
+          >
             {field.type === "select" ? (
-              <FormControl fullWidth variant="outlined">
-                <InputLabel>{field.label}</InputLabel>
-                <Select
-                  name={field.name}
-                  value={formValues[field.name] || ""}
-                  label={field.label}
-                  required={field.required}
-                  onChange={handleChange}
-                  inputProps={{ style: inputStyle }}
-                >
-                  {field.choices.map((choice) => (
-                    <MenuItem key={choice.value} value={choice.value}>
-                      {choice.label}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+              <Select style={{ width: "100%" }} placeholder={field.label}>
+                {field.choices.map((choice) => (
+                  <Option key={choice.value} value={choice.value}>
+                    {choice.label}
+                  </Option>
+                ))}
+              </Select>
+            ) : field.type === "date" ? (
+              <DatePicker style={{ width: "100%", textAlign: "left" }} />
             ) : (
-              <TextField
-                fullWidth
-                label={field.label}
-                name={field.name}
-                value={formValues[field.name] || ""}
-                type={field.type}
-                variant="outlined"
-                required={field.required}
-                onChange={handleChange}
-                inputProps={{ style: inputStyle }}
-              />
+              <Input style={{ ...inputStyle, width: "100%", textAlign: "left" }} />
             )}
-          </Grid>
+          </Form.Item>
+
+
         ))}
-        <Grid item xs={12}>
-          <Button type="submit" variant="contained">
+        <Form.Item style={{ textAlign: "right" }}>
+          <Button type="primary" htmlType="submit">
             Submit
           </Button>
-        </Grid>
-      </Grid>
-    </form>
+          <Button style={{ marginLeft: 8 }} onClick={handleReset}>
+            Reset
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 };
 

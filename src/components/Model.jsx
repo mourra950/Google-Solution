@@ -17,7 +17,7 @@ function Model({ title, desc }) {
     });
   }, []);
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card >
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {title}

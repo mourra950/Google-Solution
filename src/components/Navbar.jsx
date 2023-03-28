@@ -32,7 +32,7 @@ function Navbar() {
   const menuItems = [
     { text: "Home", path: "/" },
     { text: "About", path: "/about" },
-    { text: "Models", path: "/models" },
+    { text: "Forms", path: "/models" },
   ];
   const [isAuthenticated, setIsAuthenticated] = useState(auth.currentUser ? true : false);
 
@@ -47,12 +47,12 @@ function Navbar() {
   return (
     <AppBar position="static" color="inherit" sx={{ padding: 2 }}>
       <Toolbar>
-        <img src={Logo} alt="website logo" style={{ height: "70px" }} />
+        <img src={Logo} alt="website logo" style={{ height: "4rem" }} />
 
         <Typography
           variant="h3"
           component="div"
-          sx={{ flexGrow: 1, fontWeight: 700 }}
+          sx={{ flexGrow: 1, fontWeight: 700,fontSize:"2rem" }}
         >
           Global Care
         </Typography>
@@ -179,7 +179,7 @@ function Navbar() {
             <ListItem
               button
               component={Link}
-              to={"/profile/"+auth.currentUser.uid}
+              to={"/profile/"+auth?.currentUser?.uid}
 
               onClick={toggleMenu}
               key="Profile"

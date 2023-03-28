@@ -13,7 +13,7 @@ function Home() {
 
   return (
     <div className="home-section">
-      <h1>Making Healthcare Easier</h1>
+      <h1>Making Healthcare Accessible</h1>
 
       <Container maxWidth="sm">
         <TextField

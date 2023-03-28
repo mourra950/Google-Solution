@@ -4,14 +4,11 @@ import "../../styles/form.css";
 import { data } from "./formdata"
 import { useParams } from 'react-router-dom';
 import { auth, db } from "../../firebaseconfig";
-import { doc, addDoc, collection } from "firebase/firestore";
-import { async } from "@firebase/util";
-
-
-
+import {  addDoc, collection } from "firebase/firestore";
+import { useNavigate } from 'react-router-dom';
 const Form = () => {
   let { disease } = useParams();
-
+  const navigate = useNavigate();
   let result = data.filter(d => d["title"] == disease)
 
   const formConfig = result[0].form
@@ -21,6 +18,7 @@ const Form = () => {
   const handleSubmit = async (formData, Config) => {
     let con = Config[0]
     if (con.type == "Contacts") {
+      console.log(formData)
       await addDoc(collection(db, "Contacts"), {
         "userId": auth.currentUser.uid,
         name: formData.name,
@@ -45,11 +43,12 @@ const Form = () => {
         "date":formData.date
       })
     }
+    navigate("/");
   }
 
   return (
     <div className="container width-adjust">
-      <h1>{result[0].title}</h1>
+      <h1 style={{marginBottom:"20px",fontSize:"3rem"}}>{result[0].title}</h1>
       <FormComponent result={result} config={formConfig} onSubmit={handleSubmit} />
     </div>
   );

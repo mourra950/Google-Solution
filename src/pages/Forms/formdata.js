@@ -1,11 +1,11 @@
 export const data = [
   {
     "title": "Diagnosis",
-    "desc": "Fill this form to store past/current diagnosis/diseases",
+    "desc": "Complete this form to document your past and current diagnoses and illnesses, including as much information as possible, such as hospital names and any special notes or instructions.",
     "form": [
       { label: "Diagnosis", name: "name", type: "text", required: true },
-      { label: "Description or any note ", name: "message", type: "text", required: true },
-      { label: "Date yyyy/mm/dd", name: "date", type: "text", required: true }
+      { label: "Description", name: "message", type: "text", required: true },
+      { label: "Date of diagnosis", name: "date", type: "date", required: true }
 
 
     ],
@@ -13,20 +13,20 @@ export const data = [
   },
   {
     "title": "Prescription",
-    "desc": "Store information about any current/past prescription "
+    "desc": "Keep a record of any present or previous prescriptions. "
     ,
     "form": [
 
       { label: "Name", name: "name", type: "text", required: true },
       { label: "Dosage", name: "dosage", type: "text", required: true },
-      { label: "Date yyyy/mm/dd", name: "date", type: "text", required: true }
+      { label: "Date of the first intake", name: "date", type: "date", required: true }
       
     ],
     "type":"Prescription"
   },
   {
     "title": "Contact",
-    "desc": "form to fill emergency contacts for your profile to be able to contact any of them in case of emergency ",
+    "desc": "Fill out a form to include emergency contact information in your profile, allowing you to reach out to them in the event of an emergency. You may also include the contact details of your responsible doctor.",
     "form": [
 
       { label: "Name", name: "name", type: "text", required: true },
