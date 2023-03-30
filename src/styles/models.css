@@ -1,0 +1,13 @@
+.models-container {
+  background-color: #003459;
+  height: 90vh;
+  text-align: center;
+  padding: 2rem;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 2rem;
+  padding: var(--size-20);
+}

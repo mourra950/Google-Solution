@@ -1,0 +1,10 @@
+[
+    {
+        "name":"Marwan Hawash",
+        "diabetes":true,
+        "diabetes_data":{
+            "type":"type 1",
+            "sugar":"179"
+        }
+    }
+]
