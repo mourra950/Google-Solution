@@ -82,6 +82,7 @@ export default function Profile() {
   const [Prescription, setPrescription] = useState([]);
 
 
+
   async function getinfo() {
 
     const docRef = collection(db, "Contacts");
@@ -159,6 +160,9 @@ export default function Profile() {
   }
 
   useEffect(() => {
+    setContacts([]);
+    setDiagnosis([]);
+    setPrescription([]);
     getinfo();
 
   }, [profileId]);
