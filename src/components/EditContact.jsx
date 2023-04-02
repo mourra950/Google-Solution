@@ -36,7 +36,7 @@ function EditContact({ contact, onUpdate, onDelete }) {
     <>
       <Button
         variant="outlined"
-        style={{ color: "black", border: "1px solid white",marginTop:"10px" }}
+        style={{ color: "white", border: "1px solid white" ,marginTop:"10px"}}
         onClick={handleClickOpen}
       >
         Edit
@@ -45,8 +45,8 @@ function EditContact({ contact, onUpdate, onDelete }) {
       <Button
         variant="outlined"
         style={{
-          color: "black",
-          border: "1px solid white",
+          color: "white",
+          border: "1px solid firebrick",
           marginLeft: "8px",
           marginTop:"10px"
         }}

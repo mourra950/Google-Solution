@@ -34,6 +34,20 @@ const About = () => {
               </p>
             </div>
           </div>
+
+
+          <h2 className="text-2xl font-semibold mb-3">How to use it?</h2>
+
+          <div className="w-full  p-2">
+            <div className="bg-green-200 p-4 rounded-lg shadow">
+              <p className="text-gray-700">
+                Once you sign in using your google account, you will have a profile. From there, navigate to the forms page and fill out the required forms. Once completed, you can view your medical history in your profile page. You may find it helpful to reference the medical history form provided in the link here to ensure you are answering important questions.
+                Link: <a style={{ color: "blue" }} href='https://drive.google.com/file/d/1B88wQUzstUACt_71R50BD_4jPPT5U1vF/view?usp=sharing'>Medical Form Example</a>
+              </p>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </div>
